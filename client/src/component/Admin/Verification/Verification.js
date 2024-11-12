@@ -5,8 +5,8 @@ import NavbarAdmin from "../../Navbar/NavigationAdmin";
 
 import AdminOnly from "../../AdminOnly";
 
-import getWeb3 from "../../../getWeb3";
-import Election from "../../../contracts/Election.json";
+// import getWeb3 from "../../../getWeb3";
+// import Election from "../../../contracts/Election.json";
 
 import "./Verification.css";
 
@@ -31,22 +31,22 @@ export default class Registration extends Component {
     }
     try {
       // Get network provider and web3 instance.
-      const web3 = await getWeb3();
+      // const web3 = await getWeb3();
 
-      // Use web3 to get the user's accounts.
-      const accounts = await web3.eth.getAccounts();
+      // // Use web3 to get the user's accounts.
+      // const accounts = await web3.eth.getAccounts();
 
-      // Get the contract instance.
-      const networkId = await web3.eth.net.getId();
-      const deployedNetwork = Election.networks[networkId];
-      const instance = new web3.eth.Contract(
-        Election.abi,
-        deployedNetwork && deployedNetwork.address
-      );
+      // // Get the contract instance.
+      // const networkId = await web3.eth.net.getId();
+      // const deployedNetwork = Election.networks[networkId];
+      // const instance = new web3.eth.Contract(
+      //   Election.abi,
+      //   deployedNetwork && deployedNetwork.address
+      // );
 
-      // Set web3, accounts, and contract to the state, and then proceed with an
-      // example of interacting with the contract's methods.
-      this.setState({ web3, ElectionInstance: instance, account: accounts[0] });
+      // // Set web3, accounts, and contract to the state, and then proceed with an
+      // // example of interacting with the contract's methods.
+      // this.setState({ web3, ElectionInstance: instance, account: accounts[0] });
 
       // Total number of candidates
       const candidateCount = await this.state.ElectionInstance.methods

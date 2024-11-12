@@ -4,14 +4,14 @@ import React, { Component } from "react";
 // Components
 import Navbar from "../Navbar/Navigation";
 import NavbarAdmin from "../Navbar/NavigationAdmin";
-import NotInit from "../NotInit";
+// import NotInit from "../NotInit";
 
 // CSS
 import "./Registration.css";
 
 // Contract
-import getWeb3 from "../../getWeb3";
-import Election from "../../contracts/Election.json";
+// import getWeb3 from "../../getWeb3";
+// import Election from "../../contracts/Election.json";
 
 export default class Registration extends Component {
   constructor(props) {
@@ -46,32 +46,32 @@ export default class Registration extends Component {
     }
     try {
       // Get network provider and web3 instance.
-      const web3 = await getWeb3();
+      // const web3 = await getWeb3();
 
-      // Use web3 to get the user's accounts.
-      const accounts = await web3.eth.getAccounts();
+      // // Use web3 to get the user's accounts.
+      // const accounts = await web3.eth.getAccounts();
 
-      // Get the contract instance.
-      const networkId = await web3.eth.net.getId();
-      const deployedNetwork = Election.networks[networkId];
-      const instance = new web3.eth.Contract(
-        Election.abi,
-        deployedNetwork && deployedNetwork.address
-      );
+      // // Get the contract instance.
+      // const networkId = await web3.eth.net.getId();
+      // const deployedNetwork = Election.networks[networkId];
+      // const instance = new web3.eth.Contract(
+      //   Election.abi,
+      //   deployedNetwork && deployedNetwork.address
+      // );
 
-      // Set web3, accounts, and contract to the state, and then proceed with an
-      // example of interacting with the contract's methods.
-      this.setState({
-        web3: web3,
-        ElectionInstance: instance,
-        account: accounts[0],
-      });
+      // // Set web3, accounts, and contract to the state, and then proceed with an
+      // // example of interacting with the contract's methods.
+      // this.setState({
+      //   web3: web3,
+      //   ElectionInstance: instance,
+      //   account: accounts[0],
+      // });
 
       // Admin account and verification
-      const admin = await this.state.ElectionInstance.methods.getAdmin().call();
-      if (this.state.account === admin) {
-        this.setState({ isAdmin: true });
-      }
+      // const admin = await this.state.ElectionInstance.methods.getAdmin().call();
+      // if (this.state.account === admin) {
+      //   this.setState({ isAdmin: true });
+      // }
 
       // Get start and end values
       const start = await this.state.ElectionInstance.methods.getStart().call();
@@ -139,20 +139,26 @@ export default class Registration extends Component {
     window.location.reload();
   };
   render() {
-    if (!this.state.web3) {
-      return (
-        <>
-          {this.state.isAdmin ? <NavbarAdmin /> : <Navbar />}
-          <center>Loading Web3, accounts, and contract...</center>
-        </>
-      );
-    }
+    // if (!this.state.web3) {
+    //   return (
+    //     <>
+    //       {
+    //       this.state.isAdmin ? <NavbarAdmin />
+    //        : 
+    //        <Navbar />}
+    //       <center>Loading Web3, accounts, and contract...</center>
+    //     </>
+    //   );
+    // }
     return (
       <>
-        {this.state.isAdmin ? <NavbarAdmin /> : <Navbar />}
-        {!this.state.isElStarted && !this.state.isElEnded ? (
-          <NotInit />
-        ) : (
+        {/* {this.state.isAdmin ? <NavbarAdmin /> :*/}
+         <Navbar />
+        {
+        // !this.state.isElStarted && !this.state.isElEnded ? (
+        //   <NotInit />
+        // ) 
+        // : (
           <>
             <div className="container-item info">
               <p>Total registered voters: {this.state.voters.length}</p>
@@ -240,11 +246,14 @@ export default class Registration extends Component {
                 <small>TotalVoters: {this.state.voters.length}</small>
                 {loadAllVoters(this.state.voters)}
               </div>
-            ) : null}
+            ) 
+            : null
+            }
           </>
-        )}
+        // )
+        }
       </>
-    );
+      );
   }
 }
 export function loadCurrentVoter(voter, isRegistered) {

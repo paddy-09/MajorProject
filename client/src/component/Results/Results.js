@@ -5,11 +5,11 @@ import { Link } from "react-router-dom";
 // Components
 import Navbar from "../Navbar/Navigation";
 import NavbarAdmin from "../Navbar/NavigationAdmin";
-import NotInit from "../NotInit";
+// import NotInit from "../NotInit";
 
 // Contract
-import getWeb3 from "../../getWeb3";
-import Election from "../../contracts/Election.json";
+// import getWeb3 from "../../getWeb3";
+// import Election from "../../contracts/Election.json";
 
 // CSS
 import "./Results.css";
@@ -36,22 +36,22 @@ export default class Result extends Component {
     }
     try {
       // Get network provider and web3 instance.
-      const web3 = await getWeb3();
+      // const web3 = await getWeb3();
 
-      // Use web3 to get the user's accounts.
-      const accounts = await web3.eth.getAccounts();
+      // // Use web3 to get the user's accounts.
+      // const accounts = await web3.eth.getAccounts();
 
-      // Get the contract instance.
-      const networkId = await web3.eth.net.getId();
-      const deployedNetwork = Election.networks[networkId];
-      const instance = new web3.eth.Contract(
-        Election.abi,
-        deployedNetwork && deployedNetwork.address
-      );
+      // // Get the contract instance.
+      // const networkId = await web3.eth.net.getId();
+      // const deployedNetwork = Election.networks[networkId];
+      // const instance = new web3.eth.Contract(
+      //   Election.abi,
+      //   deployedNetwork && deployedNetwork.address
+      // );
 
-      // Set web3, accounts, and contract to the state, and then proceed with an
-      // example of interacting with the contract's methods.
-      this.setState({ web3, ElectionInstance: instance, account: accounts[0] });
+      // // Set web3, accounts, and contract to the state, and then proceed with an
+      // // example of interacting with the contract's methods.
+      // this.setState({ web3, ElectionInstance: instance, account: accounts[0] });
 
       // Get total number of candidates
       const candidateCount = await this.state.ElectionInstance.methods
@@ -95,23 +95,25 @@ export default class Result extends Component {
   };
 
   render() {
-    if (!this.state.web3) {
-      return (
-        <>
-          {this.state.isAdmin ? <NavbarAdmin /> : <Navbar />}
-          <center>Loading Web3, accounts, and contract...</center>
-        </>
-      );
-    }
+    // if (!this.state.web3) {
+    //   return (
+    //     <>
+    //       {this.state.isAdmin ? <NavbarAdmin /> : <Navbar />}
+    //       <center>Loading Web3, accounts, and contract...</center>
+    //     </>
+    //   );
+    // }
 
     return (
       <>
-        {this.state.isAdmin ? <NavbarAdmin /> : <Navbar />}
+        {/* {this.state.isAdmin ? <NavbarAdmin /> : } */}
+        <Navbar />
         <br />
         <div>
-          {!this.state.isElStarted && !this.state.isElEnded ? (
+          {/* {!this.state.isElStarted && !this.state.isElEnded ? (
             <NotInit />
-          ) : this.state.isElStarted && !this.state.isElEnded ? (
+          )  */}
+          {/* {this.state.isElStarted && !this.state.isElEnded ? ( */}
             <div className="container-item attention">
               <center>
                 <h3>The election is being conducted at the movement.</h3>
@@ -126,9 +128,9 @@ export default class Result extends Component {
                 </Link>
               </center>
             </div>
-          ) : !this.state.isElStarted && this.state.isElEnded ? (
-            displayResults(this.state.candidates)
-          ) : null}
+          {/* ) : !this.state.isElStarted && this.state.isElEnded ? ( */}
+            {/* displayResults(this.state.candidates) */}
+          {/* ) : null} */}
         </div>
       </>
     );
