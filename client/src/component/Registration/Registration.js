@@ -44,7 +44,7 @@ export default class Registration extends Component {
       window.location = window.location + "#loaded";
       window.location.reload();
     }
-    try {
+    
       // Get network provider and web3 instance.
       // const web3 = await getWeb3();
 
@@ -118,13 +118,13 @@ export default class Registration extends Component {
           isRegistered: voter.isRegistered,
         },
       });
-    } catch (error) {
-      // Catch any errors for any of the above operations.
-      console.error(error);
-      alert(
-        `Failed to load web3, accounts, or contract. Check console for details (f12).`
-      );
-    }
+    // } catch (error) {
+    //   // Catch any errors for any of the above operations.
+    //   console.error(error);
+    //   alert(
+    //     `Failed to load web3, accounts, or contract. Check console for details (f12).`
+    //   );
+    // }
   };
   updateVoterName = (event) => {
     this.setState({ voterName: event.target.value });

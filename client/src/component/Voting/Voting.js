@@ -42,7 +42,7 @@ export default class Voting extends Component {
       window.location = window.location + "#loaded";
       window.location.reload();
     }
-    try {
+    // try {
       // Get network provider and web3 instance.
       // const web3 = await getWeb3();
 
@@ -110,13 +110,13 @@ export default class Voting extends Component {
       if (this.state.account === admin) {
         this.setState({ isAdmin: true });
       }
-    } catch (error) {
-      // Catch any errors for any of the above operations.
-      alert(
-        `Failed to load web3, accounts, or contract. Check console for details.`
-      );
-      console.error(error);
-    }
+    // } catch (error) {
+    //   // Catch any errors for any of the above operations.
+    //   alert(
+    //     `Failed to load web3, accounts, or contract. Check console for details.`
+    //   );
+    //   console.error(error);
+    // }
   };
 
   renderCandidates = (candidate) => {
