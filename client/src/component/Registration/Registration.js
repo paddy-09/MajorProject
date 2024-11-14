@@ -3,7 +3,7 @@ import React, { Component } from "react";
 
 // Components
 import Navbar from "../Navbar/Navigation";
-import NavbarAdmin from "../Navbar/NavigationAdmin";
+// import NavbarAdmin from "../Navbar/NavigationAdmin";
 // import NotInit from "../NotInit";
 
 // CSS
@@ -44,7 +44,7 @@ export default class Registration extends Component {
       window.location = window.location + "#loaded";
       window.location.reload();
     }
-    
+    // try{
       // Get network provider and web3 instance.
       // const web3 = await getWeb3();
 
@@ -74,50 +74,50 @@ export default class Registration extends Component {
       // }
 
       // Get start and end values
-      const start = await this.state.ElectionInstance.methods.getStart().call();
-      this.setState({ isElStarted: start });
-      const end = await this.state.ElectionInstance.methods.getEnd().call();
-      this.setState({ isElEnded: end });
+      // const start = await this.state.ElectionInstance.methods.getStart().call();
+      // this.setState({ isElStarted: start });
+      // const end = await this.state.ElectionInstance.methods.getEnd().call();
+      // this.setState({ isElEnded: end });
 
-      // Total number of voters
-      const voterCount = await this.state.ElectionInstance.methods
-        .getTotalVoter()
-        .call();
-      this.setState({ voterCount: voterCount });
+      // // Total number of voters
+      // const voterCount = await this.state.ElectionInstance.methods
+      //   .getTotalVoter()
+      //   .call();
+      // this.setState({ voterCount: voterCount });
 
-      // Loading all the voters
-      for (let i = 0; i < this.state.voterCount; i++) {
-        const voterAddress = await this.state.ElectionInstance.methods
-          .voters(i)
-          .call();
-        const voter = await this.state.ElectionInstance.methods
-          .voterDetails(voterAddress)
-          .call();
-        this.state.voters.push({
-          address: voter.voterAddress,
-          name: voter.name,
-          phone: voter.phone,
-          hasVoted: voter.hasVoted,
-          isVerified: voter.isVerified,
-          isRegistered: voter.isRegistered,
-        });
-      }
-      this.setState({ voters: this.state.voters });
+      // // Loading all the voters
+      // for (let i = 0; i < this.state.voterCount; i++) {
+      //   const voterAddress = await this.state.ElectionInstance.methods
+      //     .voters(i)
+      //     .call();
+      //   const voter = await this.state.ElectionInstance.methods
+      //     .voterDetails(voterAddress)
+      //     .call();
+      //   this.state.voters.push({
+      //     address: voter.voterAddress,
+      //     name: voter.name,
+      //     phone: voter.phone,
+      //     hasVoted: voter.hasVoted,
+      //     isVerified: voter.isVerified,
+      //     isRegistered: voter.isRegistered,
+      //   });
+      // }
+      // this.setState({ voters: this.state.voters });
 
-      // Loading current voters
-      const voter = await this.state.ElectionInstance.methods
-        .voterDetails(this.state.account)
-        .call();
-      this.setState({
-        currentVoter: {
-          address: voter.voterAddress,
-          name: voter.name,
-          phone: voter.phone,
-          hasVoted: voter.hasVoted,
-          isVerified: voter.isVerified,
-          isRegistered: voter.isRegistered,
-        },
-      });
+      // // Loading current voters
+      // const voter = await this.state.ElectionInstance.methods
+      //   .voterDetails(this.state.account)
+      //   .call();
+      // this.setState({
+      //   currentVoter: {
+      //     address: voter.voterAddress,
+      //     name: voter.name,
+      //     phone: voter.phone,
+      //     hasVoted: voter.hasVoted,
+      //     isVerified: voter.isVerified,
+      //     isRegistered: voter.isRegistered,
+      //   },
+      // });
     // } catch (error) {
     //   // Catch any errors for any of the above operations.
     //   console.error(error);

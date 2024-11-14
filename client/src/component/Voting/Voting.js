@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 // Components
 import Navbar from "../Navbar/Navigation";
-import NavbarAdmin from "../Navbar/NavigationAdmin";
+// import NavbarAdmin from "../Navbar/NavigationAdmin";
 // import NotInit from "../NotInit";
 
 // // Contract
@@ -66,50 +66,50 @@ export default class Voting extends Component {
       // });
 
       // Get total number of candidates
-      const candidateCount = await this.state.ElectionInstance.methods
-        .getTotalCandidate()
-        .call();
-      this.setState({ candidateCount: candidateCount });
+      // const candidateCount = await this.state.ElectionInstance.methods
+      //   .getTotalCandidate()
+      //   .call();
+      // this.setState({ candidateCount: candidateCount });
 
-      // Get start and end values
-      const start = await this.state.ElectionInstance.methods.getStart().call();
-      this.setState({ isElStarted: start });
-      const end = await this.state.ElectionInstance.methods.getEnd().call();
-      this.setState({ isElEnded: end });
+      // // Get start and end values
+      // const start = await this.state.ElectionInstance.methods.getStart().call();
+      // this.setState({ isElStarted: start });
+      // const end = await this.state.ElectionInstance.methods.getEnd().call();
+      // this.setState({ isElEnded: end });
 
-      // Loading Candidates details
-      for (let i = 1; i <= this.state.candidateCount; i++) {
-        const candidate = await this.state.ElectionInstance.methods
-          .candidateDetails(i - 1)
-          .call();
-        this.state.candidates.push({
-          id: candidate.candidateId,
-          header: candidate.header,
-          slogan: candidate.slogan,
-        });
-      }
-      this.setState({ candidates: this.state.candidates });
+      // // Loading Candidates details
+      // for (let i = 1; i <= this.state.candidateCount; i++) {
+      //   const candidate = await this.state.ElectionInstance.methods
+      //     .candidateDetails(i - 1)
+      //     .call();
+      //   this.state.candidates.push({
+      //     id: candidate.candidateId,
+      //     header: candidate.header,
+      //     slogan: candidate.slogan,
+      //   });
+      // }
+      // this.setState({ candidates: this.state.candidates });
 
-      // Loading current voter
-      const voter = await this.state.ElectionInstance.methods
-        .voterDetails(this.state.account)
-        .call();
-      this.setState({
-        currentVoter: {
-          address: voter.voterAddress,
-          name: voter.name,
-          phone: voter.phone,
-          hasVoted: voter.hasVoted,
-          isVerified: voter.isVerified,
-          isRegistered: voter.isRegistered,
-        },
-      });
+      // // Loading current voter
+      // const voter = await this.state.ElectionInstance.methods
+      //   .voterDetails(this.state.account)
+      //   .call();
+      // this.setState({
+      //   currentVoter: {
+      //     address: voter.voterAddress,
+      //     name: voter.name,
+      //     phone: voter.phone,
+      //     hasVoted: voter.hasVoted,
+      //     isVerified: voter.isVerified,
+      //     isRegistered: voter.isRegistered,
+      //   },
+      // });
 
-      // Admin account and verification
-      const admin = await this.state.ElectionInstance.methods.getAdmin().call();
-      if (this.state.account === admin) {
-        this.setState({ isAdmin: true });
-      }
+      // // Admin account and verification
+      // const admin = await this.state.ElectionInstance.methods.getAdmin().call();
+      // if (this.state.account === admin) {
+      //   this.setState({ isAdmin: true });
+      // }
     // } catch (error) {
     //   // Catch any errors for any of the above operations.
     //   alert(
